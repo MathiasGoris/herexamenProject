@@ -5,6 +5,9 @@
  */
 package be.thomasmore.projectwerk.app.register.domain.entities;
 
+import be.thomasmore.projectwerk.app.register.web.model.ApplicationPropertyDto;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,6 +17,8 @@ public class ApplicationEntity extends BaseTrackableEntity {
 
     private String name;
     private String appVersion;
+	private String environment;
+	private int applicationPropertiesList;
 
     public String getName() {
         return name;
@@ -31,5 +36,19 @@ public class ApplicationEntity extends BaseTrackableEntity {
         this.appVersion = appVersion;
     }
 
-    
+	public String getEnvironment() {
+		return environment;
+	}
+
+	public void setEnvironment(String environment) {
+		this.environment = environment;
+	}
+
+	public int getApplicationPropertiesList() {
+		return applicationPropertiesList;
+	}
+
+	public void setApplicationPropertiesList(int applicationPropertiesList) {
+		this.applicationPropertiesList = applicationPropertiesList;
+	}
 }

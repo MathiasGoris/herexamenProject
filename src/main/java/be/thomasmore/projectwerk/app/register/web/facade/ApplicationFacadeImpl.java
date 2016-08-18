@@ -1,8 +1,11 @@
 package be.thomasmore.projectwerk.app.register.web.facade;
 
 import be.thomasmore.projectwerk.app.register.domain.entities.ApplicationEntity;
+import be.thomasmore.projectwerk.app.register.domain.entities.ApplicationPropertyEntity;
+import be.thomasmore.projectwerk.app.register.domain.service.ApplicationPropertyService;
 import be.thomasmore.projectwerk.app.register.domain.service.ApplicationService;
 import be.thomasmore.projectwerk.app.register.web.model.ApplicationDto;
+import be.thomasmore.projectwerk.app.register.web.model.ApplicationPropertyDto;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -13,27 +16,42 @@ public class ApplicationFacadeImpl implements ApplicationFacade{
 
     @EJB
     private ApplicationService applicationService;
+	private ApplicationPropertyService applicationPropertyService;
     
     @Override
     public List<ApplicationDto> listAll() {
         List<ApplicationDto> dtos = new LinkedList<>();
         List<ApplicationEntity> entities = applicationService.list();
+		
         
         for (ApplicationEntity entity : entities) {
             ApplicationDto dto = new ApplicationDto();
             dto.setName(entity.getName());
             dto.setVersion(entity.getAppVersion());
+			dto.setEnvironment(entity.getEnvironment());
+			//dto.setPropertylist(entity.getApplicationProperties());
             dtos.add(dto);
         }
         
         return dtos;
     }
     
+	
     @Override
     public void create(ApplicationDto dto) {
         ApplicationEntity ae = new ApplicationEntity();
+		ApplicationPropertyEntity ape  = new ApplicationPropertyEntity();
         ae.setAppVersion(dto.getVersion());
         ae.setName(dto.getName());
+		ae.setEnvironment(dto.getEnvironment());
+		
+		for (ApplicationPropertyDto i : dto.getPropertylist()){
+			ape.setName(i.getName());
+			ape.setValue(i.getValue());
+			ape.setAppid(ae.getId());
+			applicationPropertyService.save(ape);
+		}
+		
         applicationService.save(ae);
     }
     
