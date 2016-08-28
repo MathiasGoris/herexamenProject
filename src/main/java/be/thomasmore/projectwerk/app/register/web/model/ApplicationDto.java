@@ -13,7 +13,8 @@ import java.util.List;
  * @author lucs
  */
 public class ApplicationDto {
-    
+	
+    public String id;
     public String name;
     public String version;
 	public String environment;
@@ -56,5 +57,13 @@ public class ApplicationDto {
 
 	public void setPropertylist(List<ApplicationPropertyDto> propertylist) {
 		this.propertylist = propertylist;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String Id) {
+		this.id = Id;
 	}
 }

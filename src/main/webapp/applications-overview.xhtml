@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
+		<h:form>
         <p:dataTable value="#{applicationOverview.applications}" var="app">
             <p:column headerText="App">
                 <h:outputText value="#{app.name}" />
@@ -19,7 +20,25 @@
             <p:column headerText="Version">
                 <h:outputText value="#{app.version}" />
             </p:column>
-
+			
+			<p:column headerText="Environment">
+                <h:outputText value="#{app.environment}" />
+            </p:column>
+			
+			<p:column headerText="Properties">     
+				<p:link outcome="application-properties" value="Bookmark">
+					<f:param name="appId" value="#{app.id}" />
+				</p:link>
+            </p:column>
+			
+			<p:column headerText="Inplace-test">
+                <p:inplace id="ajax" editor="true">
+					<p:inputText value="#{app.environment}" required="true" label="text" />
+				</p:inplace>
+            </p:column>
         </p:dataTable>
+		</h:form>
+		
+		
     </body>
 </html>

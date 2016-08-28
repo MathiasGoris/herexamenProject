@@ -23,19 +23,33 @@ public class ApplicationFacadeImpl implements ApplicationFacade{
         List<ApplicationDto> dtos = new LinkedList<>();
         List<ApplicationEntity> entities = applicationService.list();
 		
-        
         for (ApplicationEntity entity : entities) {
             ApplicationDto dto = new ApplicationDto();
+			dto.setId(entity.getId());
             dto.setName(entity.getName());
             dto.setVersion(entity.getAppVersion());
 			dto.setEnvironment(entity.getEnvironment());
-			//dto.setPropertylist(entity.getApplicationProperties());
             dtos.add(dto);
         }
         
         return dtos;
     }
-    
+	
+	@Override
+    public List<ApplicationPropertyDto> listAllProperties() {
+		List<ApplicationPropertyDto> dtos = new LinkedList<>();
+        List<ApplicationPropertyEntity> entities = applicationPropertyService.list();
+		
+		for (ApplicationPropertyEntity entity : entities) {
+            ApplicationPropertyDto dto = new ApplicationPropertyDto();
+			dto.setAppId(entity.getAppid());
+			dto.setName(entity.getName());
+			dto.setValue(entity.getValue());
+            dtos.add(dto);
+        }
+        
+        return dtos;
+	}
 	
     @Override
     public void create(ApplicationDto dto) {

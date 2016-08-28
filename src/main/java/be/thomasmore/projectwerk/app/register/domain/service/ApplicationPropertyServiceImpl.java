@@ -6,6 +6,7 @@
 package be.thomasmore.projectwerk.app.register.domain.service;
 
 
+import be.thomasmore.projectwerk.app.register.domain.dao.ApplicationPropertyDao;
 import be.thomasmore.projectwerk.app.register.domain.entities.ApplicationPropertyEntity;
 import java.util.List;
 import javax.ejb.EJB;

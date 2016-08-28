@@ -24,7 +24,7 @@ public class ApplicationsOverviewView {
     
     private List<ApplicationDto> applications = new LinkedList<>();
 
-     @EJB
+    @EJB
     private ApplicationFacade facade;
 
     @PostConstruct

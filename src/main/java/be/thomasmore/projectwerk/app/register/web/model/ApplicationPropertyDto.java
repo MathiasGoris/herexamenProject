@@ -10,9 +10,18 @@ package be.thomasmore.projectwerk.app.register.web.model;
  * @author thomas
  */
 public class ApplicationPropertyDto {
+	public String appId;
 	public String name;
 	public String value;
 
+	public String getAppId() {
+		return appId;
+	}
+
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
+	
 	public String getName() {
 		return name;
 	}

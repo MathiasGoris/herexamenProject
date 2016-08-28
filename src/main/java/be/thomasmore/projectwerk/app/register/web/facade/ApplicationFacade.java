@@ -6,6 +6,7 @@
 package be.thomasmore.projectwerk.app.register.web.facade;
 
 import be.thomasmore.projectwerk.app.register.web.model.ApplicationDto;
+import be.thomasmore.projectwerk.app.register.web.model.ApplicationPropertyDto;
 import java.util.List;
 
 /**
@@ -14,7 +15,9 @@ import java.util.List;
  */
 public interface ApplicationFacade {
     
-     List<ApplicationDto> listAll();
+    List<ApplicationDto> listAll();
+	 
+	List<ApplicationPropertyDto> listAllProperties();
 
     void create(ApplicationDto dto);
 }
