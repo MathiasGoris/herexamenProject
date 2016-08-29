@@ -8,5 +8,9 @@ public interface ApplicationService {
     public List<ApplicationEntity> list();
 
     void save(ApplicationEntity ae);
+
+	void delete(String appId);
+
+	void update(String appId, String appName, String appVersion, String appEnvironment);
     
 }

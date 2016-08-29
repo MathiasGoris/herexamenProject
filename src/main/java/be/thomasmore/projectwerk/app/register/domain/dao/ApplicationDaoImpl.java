@@ -15,13 +15,21 @@ public class ApplicationDaoImpl extends BaseDaoImpl<ApplicationEntity>implements
     protected EntityManager em() {
         return em;
     }
-    
-    
+	
+	@Override
+	public void delete(String id){
+		ApplicationEntity ae = em.getReference(ApplicationEntity.class, id);
+		em.remove(ae);
+		em.flush();
+	}
+	
+	@Override
+	public void update(String appId, String appName, String appVersion, String appEnvironment) {
+		ApplicationEntity ae = em.getReference(ApplicationEntity.class, appId);
+	}
 
     @Override
     protected Class<ApplicationEntity> entityClass() {
         return ApplicationEntity.class;
     }
-
-    
 }

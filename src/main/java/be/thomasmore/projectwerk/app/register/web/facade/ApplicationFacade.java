@@ -20,4 +20,8 @@ public interface ApplicationFacade {
 	List<ApplicationPropertyDto> listAllProperties();
 
     void create(ApplicationDto dto);
+
+	void delete(String appId);
+
+	void update(String appId, String appName, String appVersion, String appEnvironment);
 }

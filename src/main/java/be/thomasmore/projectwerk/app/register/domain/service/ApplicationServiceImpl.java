@@ -21,5 +21,15 @@ public class ApplicationServiceImpl implements ApplicationService{
     public void save(ApplicationEntity ae) {
          dao.save(ae);
     }
+
+	@Override
+	public void delete(String appId) {
+		dao.delete(appId);
+	}
+
+	@Override
+	public void update(String appId, String appName, String appVersion, String appEnvironment) {
+		dao.update(appId,appName,appVersion,appEnvironment);
+	}
     
 }

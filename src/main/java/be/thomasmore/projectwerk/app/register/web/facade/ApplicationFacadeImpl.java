@@ -68,6 +68,16 @@ public class ApplicationFacadeImpl implements ApplicationFacade{
 		
         applicationService.save(ae);
     }
+
+	@Override
+	public void delete(String appId) {
+		applicationService.delete(appId);
+	}
+
+	@Override
+	public void update(String appId, String appName, String appVersion, String appEnvironment) {
+		applicationService.update(appId, appName, appVersion, appEnvironment);
+	}
     
     
 }

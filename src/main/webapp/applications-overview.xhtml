@@ -12,7 +12,7 @@
     </h:head>
     <body>
 		<h:form>
-        <p:dataTable value="#{applicationOverview.applications}" var="app">
+        <p:dataTable value="#{applicationOverview.applicationlist}" var="app">
             <p:column headerText="App">
                 <h:outputText value="#{app.name}" />
             </p:column>
@@ -38,7 +38,15 @@
             </p:column>
         </p:dataTable>
 		</h:form>
-		
+		<br/>
+		<br/>
+		<h:form>
+			Add an application:<br />
+			<p:inputText value="#{applicationOverview.appName}" required="true" label="Name" placeholder="Name"/>
+			<p:inputText value="#{applicationOverview.appVersion}" required="true" label="Version" placeholder="Version"/>
+			<p:inputText value="#{applicationOverview.appEnvironment}" required="true" label="Environment" placeholder="Environment"/>
+			<p:commandButton value="Create" actionListener="#{applicationOverview.createApplication}" ajax="true"/>
+		</h:form>
 		
     </body>
 </html>
