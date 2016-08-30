@@ -40,6 +40,13 @@
 				</p:link>
             </p:column>
 			
+			<p:column headerText="Create New Version">
+				
+				<p:commandButton type="button" value="New Version" action="#{applicationOverview.setAppName(app.name)}" update="dlg" onclick="PF('dlg').show();">
+					<f:actionListener binding="#{applicationOverview.setAppEnvironment(app.environment)}" />
+				</p:commandButton>
+            </p:column>
+			
 			<p:column headerText="">
 				<p:commandButton value="Update" update="@form" actionListener="#{applicationOverview.updateApplication(app.id, app.name, app.version, app.environment)}" />
                 <p:commandButton value="Delete" update="@form" actionListener="#{applicationOverview.deleteApplication(app.id)}">
@@ -51,6 +58,16 @@
 					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 					<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 		</p:confirmDialog>
+		
+		<p:dialog header="Nieuwe versie" widgetVar="dlg" resizable="false">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="newversion" value="Choose a new version number:" />
+				<p:inputText id="newversion" value="#{applicationOverview.appVersion}" required="true" label="newversion" />
+					<f:facet name="footer">
+						<p:commandButton value="Create" update="@all" action="#{applicationOverview.createApplication}" />
+					</f:facet>  
+			</h:panelGrid>
+		</p:dialog>
 		</h:form>
 		<br/>
 		<br/>
