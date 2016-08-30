@@ -66,7 +66,7 @@ public class ApplicationsOverviewView {
 		applicationlist = facade.listAll();
 	}
 
-	public void updateTask(String appId, String appName, String appVersion, String appEnvironment) {
+	public void updateApplication(String appId, String appName, String appVersion, String appEnvironment) {
 		facade.update(appId, appName,appVersion,appEnvironment);
 		
 		applicationlist = facade.listAll();

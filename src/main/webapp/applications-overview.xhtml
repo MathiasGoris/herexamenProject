@@ -7,12 +7,15 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Overzicht Applicaties</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
 		<h:form>
         <p:dataTable id="applications-table" value="#{applicationOverview.applicationlist}" var="app">
+			<f:facet name="header">
+				Lijst van applicaties
+			</f:facet>
             <p:column headerText="App">
 				<p:inplace editor="true">
 					<p:inputText value="#{app.name}" required="true" label="App Name" />
@@ -38,9 +41,16 @@
             </p:column>
 			
 			<p:column headerText="">
-                
+				<p:commandButton value="Update" update="@form" actionListener="#{applicationOverview.updateApplication(app.id, app.name, app.version, app.environment)}" />
+                <p:commandButton value="Delete" update="@form" actionListener="#{applicationOverview.deleteApplication(app.id)}">
+					<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+				</p:commandButton>
             </p:column>
         </p:dataTable>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
 		</h:form>
 		<br/>
 		<br/>
@@ -51,6 +61,7 @@
 			<p:inputText value="#{applicationOverview.appEnvironment}" required="true" label="Environment" placeholder="Environment"/>
 			<p:commandButton update="@all" value="Create" actionListener="#{applicationOverview.createApplication}" ajax="true"/>
 		</h:form>
+		
 		
     </body>
 </html>
