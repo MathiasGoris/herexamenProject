@@ -12,29 +12,33 @@
     </h:head>
     <body>
 		<h:form>
-        <p:dataTable value="#{applicationOverview.applicationlist}" var="app">
+        <p:dataTable id="applications-table" value="#{applicationOverview.applicationlist}" var="app">
             <p:column headerText="App">
-                <h:outputText value="#{app.name}" />
+				<p:inplace editor="true">
+					<p:inputText value="#{app.name}" required="true" label="App Name" />
+				</p:inplace>
             </p:column>
-
+			
             <p:column headerText="Version">
-                <h:outputText value="#{app.version}" />
+				<p:inplace editor="true">
+					<p:inputText value="#{app.version}" required="true" label="App Version" />
+				</p:inplace>             
             </p:column>
 			
 			<p:column headerText="Environment">
-                <h:outputText value="#{app.environment}" />
+				<p:inplace editor="true">
+					<p:inputText value="#{app.environment}" required="true" label="App Version" />
+				</p:inplace>
             </p:column>
 			
 			<p:column headerText="Properties">     
-				<p:link outcome="application-properties" value="Bookmark">
+				<p:link outcome="application-properties" value="Properties">
 					<f:param name="appId" value="#{app.id}" />
 				</p:link>
             </p:column>
 			
-			<p:column headerText="Inplace-test">
-                <p:inplace id="ajax" editor="true">
-					<p:inputText value="#{app.environment}" required="true" label="text" />
-				</p:inplace>
+			<p:column headerText="">
+                
             </p:column>
         </p:dataTable>
 		</h:form>
@@ -45,7 +49,7 @@
 			<p:inputText value="#{applicationOverview.appName}" required="true" label="Name" placeholder="Name"/>
 			<p:inputText value="#{applicationOverview.appVersion}" required="true" label="Version" placeholder="Version"/>
 			<p:inputText value="#{applicationOverview.appEnvironment}" required="true" label="Environment" placeholder="Environment"/>
-			<p:commandButton value="Create" actionListener="#{applicationOverview.createApplication}" ajax="true"/>
+			<p:commandButton update="@all" value="Create" actionListener="#{applicationOverview.createApplication}" ajax="true"/>
 		</h:form>
 		
     </body>
